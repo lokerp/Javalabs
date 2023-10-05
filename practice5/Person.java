@@ -10,6 +10,8 @@ public class Person implements Comparable<Person> {
     }
 
     public Person(String name, Gender gender, short age) throws IllegalArgumentException {
+        if (name == null || name.equals(name.toLowerCase()))
+            throw new IllegalArgumentException("Некорректное имя");
         this.name = name;
         this.gender = gender;
         if (age < 0)
@@ -22,6 +24,8 @@ public class Person implements Comparable<Person> {
     }
 
     public void setName(String name) {
+        if (name == null || name.equals(name.toLowerCase()))
+            throw new IllegalArgumentException("Некорректное имя");
         this.name = name;
     }
 

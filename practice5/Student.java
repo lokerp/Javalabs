@@ -29,12 +29,12 @@ public class Student extends Learner {
     @Override
     public boolean hasScholarship() {
         try {
-            if (getLessons().stream().mapToInt(Lesson::getScore).average().getAsDouble() >= 4.75
-                && courseWorks.stream().anyMatch(c -> c.getScore() == 5))
-                return true;
+            return getLessons().stream().mapToInt(Lesson::getScore).average().getAsDouble() >= 4.75
+                    && courseWorks.stream().anyMatch(c -> c.getScore() == 5);
         }
-        catch (Exception ignored) { }
-        return false;
+        catch (Exception e) {
+            return false;
+        }
     }
 
     @Override

@@ -40,7 +40,7 @@ public class Main {
 
     private static final int[] SCHOOLCHILDAGERANGE = {7, 18};
     private static final int[] STUDENTAGERANGE = {18, 30};
-    private static final int[] MARKSRANGE = {4, 5};
+    private static final int[] MARKSRANGE = {2, 5};
     private static final int[] SCHOOLCHILDSCHOOLNUMRANGE = {1, 5};
 
     private static final RandomGenerator randomGenerator = RandomGenerator.getDefault();
