@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Olympiad {
     private OlympiadLvl lvl;
     private int place;

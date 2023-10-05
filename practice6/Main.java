@@ -59,24 +59,35 @@ public class Main {
 
         System.out.println("_".repeat(20));
 
-        System.out.println("Девочки, получившие первые места на олимпиадах: ");
-        schoolchildren.stream().filter(s -> s.getGender() == Gender.Female
-                                            && s.getOlympiads().stream().anyMatch(o -> o.getPlace() == 1))
-                               .forEach(Main::customListPrint);
-
-        System.out.println("_".repeat(20));
-
-        System.out.println("Студенты, имеющие оценки за курсовые работы: ");
-        students.stream().filter(s -> !s.getCourseWorks().isEmpty()).forEach(Main::customListPrint);
-
-        System.out.println("_".repeat(20));
-
         var learners = new ArrayList<Learner>(schoolchildren.size() + students.size());
         for (Learner s : schoolchildren) if (s.hasScholarship()) learners.add(s);
         for (Learner s: students) if (s.hasScholarship()) learners.add(s);
+        learners.sort(Person::compareTo);
 
-        System.out.println("Массив учащихся со стипендией ");
+        System.out.println("Массив учащихся со стипендией, отсортированный по именам: ");
         System.out.println(learners);
+
+        System.out.println("_".repeat(20));
+
+        var bestSchoolchild = schoolchildren.stream().max(new PerformanceLearnerComparator<>()).orElse(null);
+        var bestStudent = students.stream().max(new PerformanceLearnerComparator<>()).orElse(null);
+        if (bestSchoolchild != null)
+            System.out.println("Лучший по успеваемости школьник: " + bestSchoolchild);
+        if (bestStudent != null)
+            System.out.println("Лучший по успеваемости студент: " + bestStudent);
+
+        System.out.println("_".repeat(20));
+
+        var sortedSchoolchildren = schoolchildren.stream().sorted(new PerformanceLearnerComparator<Schoolchild>()
+                                                              .thenComparing(Schoolchild::getSchoolNum));
+        System.out.println("Список школьников, отсортированный по успеваемости и номеру школы: ");
+        sortedSchoolchildren.forEach(Main::customListPrint);
+
+        System.out.println("_".repeat(20));
+
+        var sortedStudents = students.stream().sorted(new PerformanceLearnerComparator<>());
+        System.out.println("Список студентов, отсортированный по успеваемости: ");
+        sortedStudents.forEach(Main::customListPrint);
     }
 
     public static void customListPrint(Object x) {
