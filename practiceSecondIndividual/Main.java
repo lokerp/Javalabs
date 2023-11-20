@@ -64,8 +64,10 @@ public class Main {
         System.out.println(ListExtension.listToString(filteredDishes));
 
         var complexitySortedDishes = filteredDishes.stream().sorted(new DishComplexityComparator()).toList();
-        var mostComplexDishes = complexitySortedDishes.subList(complexitySortedDishes.size() - 2, complexitySortedDishes.size());
-        var easiestDishes = complexitySortedDishes.subList(0, 2);
+        var mostComplexDishes = complexitySortedDishes.stream().limit(2).toList();
+        var complexitySortedDishesReversed = new ArrayList<>(complexitySortedDishes);
+        Collections.reverse(complexitySortedDishesReversed);
+        var easiestDishes = complexitySortedDishesReversed.stream().limit(2).toList();
         System.out.println("Самые сложные блюда: ");
         System.out.println(ListExtension.listToString(mostComplexDishes));
         System.out.println("Самые простые блюда: ");
@@ -135,10 +137,10 @@ public class Main {
                                                 Dish.Type type,
                                                 String missingIngredient) {
         return dishes.stream().filter(d ->
-                (state.equals("-1") || d.getState().equals(state)
+                (state.equals("-1") || d.getState().equalsIgnoreCase(state)
              && (stateSide == null || (d.getStateWorldSide() != null &&  d.getStateWorldSide().containsAll(stateSide) && stateSide.containsAll(d.getStateWorldSide()))))
              && (type == null || type == Dish.Type.NOTSTATED || d.getType() == type)
-             && (missingIngredient.equals("-1") || !d.getIngredients().contains(missingIngredient)))
+             && (missingIngredient.equals("-1") || !d.getIngredients().contains(missingIngredient.toLowerCase())))
                               .toList();
     }
 
@@ -160,14 +162,14 @@ public class Main {
         for (int i = 0; i < groupedDishes.size(); i++) {
             String state = groupedDishesList.get(i).getKey();
             var typeAndIngredientList = groupedDishesList.get(i).getValue().entrySet().stream().toList();
-            int padding = state.length();
+            int padding = state.length() + 1;
             sbTable.append(state).append(" ");
             for (int j = 0; j < typeAndIngredientList.size(); j++) {
                 if (j != 0)
                     sbTable.append(" ".repeat(padding));
                 var type = typeAndIngredientList.get(j).getKey();
                 var mostCommonIngredient = typeAndIngredientList.get(j).getValue();
-                sbTable.append(" ").append(type).append(" ").append(mostCommonIngredient).append("\n");
+                sbTable.append(type).append(" ").append(mostCommonIngredient).append("\n");
             }
             sbTable.append("\n");
         }

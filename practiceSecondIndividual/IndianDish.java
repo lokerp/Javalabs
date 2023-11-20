@@ -95,6 +95,7 @@ public class IndianDish extends Dish {
 
         List<String> ingredients = Arrays.stream(data.get(1).replaceAll(",", " ")
                                                             .replaceAll(" +", " ")
+                                                            .toLowerCase()
                                                             .split(" ")).toList();
         if (ingredients.isEmpty())
             throw new IllegalArgumentException("Incorrect data: ingredients is empty");
