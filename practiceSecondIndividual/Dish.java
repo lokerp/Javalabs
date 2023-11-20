@@ -3,6 +3,7 @@ import java.util.List;
 
 public class Dish {
     public enum Type {
+        NOTSTATED("Не установлен"),
         MAINCOURSE("Основное"),
         DESSERT("Десерт"),
         SNACK("Закуска");

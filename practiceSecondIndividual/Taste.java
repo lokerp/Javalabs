@@ -1,4 +1,5 @@
 public enum Taste {
+    NOTSTATED ("Не установлен"),
     SPICY("Острый"),
     SWEET("Сладкий"),
     BITTER("Горький"),

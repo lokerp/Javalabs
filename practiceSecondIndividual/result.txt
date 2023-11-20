@@ -1,0 +1,84 @@
+Найденные блюда:
+1: Блюдо Sattu ki roti{Ингредиенты=[Sattu, atta, dough, filling, mustard, oil], Вегетарианское=true, Время подготовки продуктов в минутах=10, Время готовки блюда в минутах=20, Вкус=Острый, Тип=Основное, Индийский штат=Bihar, Сторона света=[Север]};
+2: Блюдо Litti chokha{Ингредиенты=[Wheat, flour, roasted, gram, flour, tomato, nigella, seeds, chilli], Вегетарианское=true, Время подготовки продуктов в минутах=45, Время готовки блюда в минутах=60, Вкус=Острый, Тип=Основное, Индийский штат=Bihar, Сторона света=[Север]};
+3: Блюдо Malapua{Ингредиенты=[Yoghurt, refined, flour, ghee, fennel, seeds], Вегетарианское=true, Время подготовки продуктов в минутах=10, Время готовки блюда в минутах=120, Вкус=Сладкий, Тип=Десерт, Индийский штат=Bihar, Сторона света=[Север]};
+Самые сложные блюда:
+1: Блюдо Malapua{Ингредиенты=[Yoghurt, refined, flour, ghee, fennel, seeds], Вегетарианское=true, Время подготовки продуктов в минутах=10, Время готовки блюда в минутах=120, Вкус=Сладкий, Тип=Десерт, Индийский штат=Bihar, Сторона света=[Север]};
+2: Блюдо Litti chokha{Ингредиенты=[Wheat, flour, roasted, gram, flour, tomato, nigella, seeds, chilli], Вегетарианское=true, Время подготовки продуктов в минутах=45, Время готовки блюда в минутах=60, Вкус=Острый, Тип=Основное, Индийский штат=Bihar, Сторона света=[Север]};Самые простые блюда:
+1: Блюдо Sattu ki roti{Ингредиенты=[Sattu, atta, dough, filling, mustard, oil], Вегетарианское=true, Время подготовки продуктов в минутах=10, Время готовки блюда в минутах=20, Вкус=Острый, Тип=Основное, Индийский штат=Bihar, Сторона света=[Север]};
+2: Блюдо Malapua{Ингредиенты=[Yoghurt, refined, flour, ghee, fennel, seeds], Вегетарианское=true, Время подготовки продуктов в минутах=10, Время готовки блюда в минутах=120, Вкус=Сладкий, Тип=Десерт, Индийский штат=Bihar, Сторона света=[Север]};Таблица блюд: 
+Bihar  Десерт Yoghurt
+      Основное flour
+
+Gujarat  Десерт clarified
+        Закуска flour
+        Основное flour
+
+Assam  Десерт rice
+      Основное mustard
+
+Telangana  Десерт milk
+          Основное thighs
+
+Madhya Pradesh  Десерт powder
+               Основное butter
+
+Andhra Pradesh  Десерт flour
+               Закуска flour
+
+Tamil Nadu  Десерт jaggery
+           Закуска flour
+           Основное dal
+
+Jammu & Kashmir  Десерт pistachio
+                Основное tomatoes
+
+Chhattisgarh  Закуска dal
+
+Karnataka  Десерт milk
+          Основное dal
+
+Goa  Десерт all
+    Основное cinnamon
+
+Odisha  Десерт sugar
+       Основное Curd
+
+West Bengal  Десерт sugar
+            Основное ginger
+
+Maharashtra  Десерт flour
+            Закуска flour
+            Основное flour
+
+Kerala  Десерт Black
+       Закуска black
+       Основное Raw
+
+NOTSTATED  Десерт sugar
+          Закуска dal
+          Основное oil
+
+Punjab  Десерт milk
+       Основное masala
+
+NCT of Delhi  Основное greek
+
+Rajasthan  Десерт khus
+          Основное dal
+
+Tripura  Основное garlic
+
+Uttar Pradesh  Десерт flour
+              Закуска seeds
+              Основное masala
+
+Haryana  Основное leaves
+
+Uttarakhand  Десерт molu
+
+Manipur  Десерт cardamom
+        Основное slivered
+
+Nagaland  Основное axone
+

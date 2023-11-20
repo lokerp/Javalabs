@@ -51,7 +51,7 @@ public class IndianDish extends Dish {
             throw new IllegalArgumentException("Incorrect data: no info about goods preparation time");
         }
 
-        Taste taste = null;
+        Taste taste = Taste.NOTSTATED;
         if (!data.get(5).equals("-1")) {
             try {
                 taste = Taste.parse(data.get(5));
@@ -61,7 +61,7 @@ public class IndianDish extends Dish {
             }
         }
 
-        Dish.Type type = null;
+        Dish.Type type = Type.NOTSTATED;
         if (!data.get(6).equals("-1")) {
             try {
                 type = Type.parse(data.get(6));
@@ -87,21 +87,26 @@ public class IndianDish extends Dish {
                 throw new IllegalArgumentException("Incorrect data: incorrect info about state world side");
         }
 
-        String name = null;
-        if (!data.get(0).equals("-1"))
-            name = data.get(0);
+        String name = data.get(0);
+        if (data.get(0).equals("-1"))
+            name = "NOTSTATED";
+        if (name == null || name.isBlank())
+            throw new IllegalArgumentException("Incorrect data: incorrect name");
 
         List<String> ingredients = Arrays.stream(data.get(1).replaceAll(",", " ")
-                                                            .replace(" +", " ")
+                                                            .replaceAll(" +", " ")
                                                             .split(" ")).toList();
         if (ingredients.isEmpty())
             throw new IllegalArgumentException("Incorrect data: ingredients is empty");
         if (ingredients.get(0).equals("-1"))
             ingredients = null;
 
-        String state = null;
-        if (!data.get(7).equals("-1"))
-            state = data.get(7);
+
+        String state = data.get(7);
+        if (data.get(7).equals("-1"))
+            state = "NOTSTATED";
+        if (state == null || state.isBlank())
+            throw new IllegalArgumentException("Incorrect data: incorrect state");
 
         return new IndianDish(name,
                               ingredients,

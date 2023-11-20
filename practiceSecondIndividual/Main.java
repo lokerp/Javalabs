@@ -43,7 +43,7 @@ public class Main {
 
         System.out.println("Выберите желаемый тип блюда (-1 - не выбирать)");
         System.out.println("0 - Основное\n1 - Десерт\n2 - Закуска");
-        Dish.Type type = null;
+        Dish.Type type = Dish.Type.NOTSTATED;
         String dishTypeString = scanner.nextLine();
         if (!dishTypeString.equals("-1")) {
             try {
@@ -58,8 +58,8 @@ public class Main {
         System.out.print("Напишите название ингредиента, который должен отсутствовать (-1 - не выбирать): ");
         String missingIngredient = scanner.nextLine();
 
-        var filteredDishes = filterDishes(dishes, state, stateSide, type, missingIngredient);
-        filteredDishes.sort(Comparator.comparingInt(Dish::getDishPreparationTimeInMinutes));
+        var filteredDishes = filterDishes(dishes, state, stateSide, type, missingIngredient).stream()
+                .sorted((x, y) -> Integer.compare(x.dishPreparationTimeInMinutes, y.dishPreparationTimeInMinutes)).toList();
         System.out.println("Найденные блюда:");
         System.out.println(ListExtension.listToString(filteredDishes));
 
@@ -73,7 +73,13 @@ public class Main {
 
         Map<String, Map<Dish.Type, String>> groupedDishes = dishes.stream().collect(
                 Collectors.groupingBy(IndianDish::getState,
-                        Collectors.toMap((Dish d) -> d.getType(), (Dish d) -> getMostCommonItem(d.getIngredients()))));
+                        Collectors.groupingBy(IndianDish::getType,
+                                Collectors.flatMapping(x -> x.getIngredients().stream(),
+                                        Collectors.collectingAndThen(Collectors.toList(), Main::getMostCommonItem)))));
+
+        var dishesTable = getDishesTable(groupedDishes);
+        System.out.println("Таблица блюд: ");
+        System.out.println(dishesTable);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(RESULT_PATH))){
             writer.write("Найденные блюда:\n");
@@ -82,6 +88,8 @@ public class Main {
             writer.write(ListExtension.listToString(mostComplexDishes));
             writer.write("Самые простые блюда:\n");
             writer.write(ListExtension.listToString(easiestDishes));
+            writer.write("Таблица блюд: \n");
+            writer.write(dishesTable);
         }
         catch (IOException e) {
             System.out.println("Ошибка при открытии результирующего файла: " + e.getMessage());
@@ -127,9 +135,9 @@ public class Main {
                                                 Dish.Type type,
                                                 String missingIngredient) {
         return dishes.stream().filter(d ->
-                (state.equals("-1") || d.getState().equals(state))
-             && (stateSide == null || d.getStateWorldSide().containsAll(stateSide) && stateSide.containsAll(d.getStateWorldSide()))
-             && (type == null || d.getType() == type)
+                (state.equals("-1") || d.getState().equals(state)
+             && (stateSide == null || (d.getStateWorldSide() != null &&  d.getStateWorldSide().containsAll(stateSide) && stateSide.containsAll(d.getStateWorldSide()))))
+             && (type == null || type == Dish.Type.NOTSTATED || d.getType() == type)
              && (missingIngredient.equals("-1") || !d.getIngredients().contains(missingIngredient)))
                               .toList();
     }
@@ -157,8 +165,12 @@ public class Main {
             for (int j = 0; j < typeAndIngredientList.size(); j++) {
                 if (j != 0)
                     sbTable.append(" ".repeat(padding));
-
+                var type = typeAndIngredientList.get(j).getKey();
+                var mostCommonIngredient = typeAndIngredientList.get(j).getValue();
+                sbTable.append(" ").append(type).append(" ").append(mostCommonIngredient).append("\n");
             }
+            sbTable.append("\n");
         }
+        return sbTable.toString();
     }
 }

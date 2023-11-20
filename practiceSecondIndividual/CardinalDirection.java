@@ -1,11 +1,11 @@
 import java.util.EnumSet;
 
 public enum CardinalDirection {
-    North("Север"),
-    South("Юг"),
-    East("Восток"),
-    West("Запад"),
-    Central("Центр");
+    NORTH("Север"),
+    SOUTH("Юг"),
+    EAST("Восток"),
+    WEST("Запад"),
+    CENTRAL("Центр");
 
     private final String nameInRussian;
     CardinalDirection(String nameInRussian) {
@@ -24,9 +24,9 @@ public enum CardinalDirection {
 
     public static boolean isSideCorrect(EnumSet<CardinalDirection> side) {
         return !(side == null || side.isEmpty() || side.size() > 2
-                || (side.size() == 2 && side.contains(CardinalDirection.Central))
-                || (side.contains(CardinalDirection.North) && side.contains(CardinalDirection.South))
-                || (side.contains(CardinalDirection.East) && side.contains(CardinalDirection.West)));
+                || (side.size() == 2 && side.contains(CardinalDirection.CENTRAL))
+                || (side.contains(CardinalDirection.NORTH) && side.contains(CardinalDirection.SOUTH))
+                || (side.contains(CardinalDirection.EAST) && side.contains(CardinalDirection.WEST)));
     }
 
     @Override
